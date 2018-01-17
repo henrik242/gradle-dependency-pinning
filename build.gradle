@@ -1,0 +1,30 @@
+buildscript {
+  repositories {
+    jcenter()
+    gradlePluginPortal()
+  }
+  dependencies {
+    classpath "io.spring.gradle:dependency-management-plugin:1.0.4.RELEASE"
+    classpath 'gradle.plugin.org.akhikhl.gretty:gretty:2.0.0'    
+  }
+}
+
+apply plugin: 'java-library'
+apply plugin: 'org.akhikhl.gretty'
+apply plugin: 'io.spring.dependency-management'
+
+dependencyManagement {
+    dependencies {
+        dependency "org.springframework.boot:spring-boot-starter-web:1.5.9.RELEASE"
+        dependency "org.springframework.boot:spring-boot-starter:1.5.9.RELEASE"
+        dependency "org.springframework.boot:spring-boot-starter-websocket:1.5.9.RELEASE"
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+gretty {
+    springBoot = true
+}
